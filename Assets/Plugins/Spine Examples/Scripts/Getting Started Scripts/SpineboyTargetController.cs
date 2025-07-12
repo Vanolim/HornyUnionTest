@@ -37,7 +37,9 @@ namespace Spine.Unity.Examples {
 		[SpineBone(dataField: "skeletonAnimation")]
 		public string boneName;
 		public Camera cam;
-
+		public float _rotateSpeed = 10f;
+		public Rigidbody _target;
+		
 		Bone bone;
 
 		void OnValidate () {
@@ -48,7 +50,7 @@ namespace Spine.Unity.Examples {
 			bone = skeletonAnimation.Skeleton.FindBone(boneName);
 		}
 
-		void Update () {
+		void LateUpdate () {
 			Vector3 mousePosition = Input.mousePosition;
 			Vector3 worldMousePosition = cam.ScreenToWorldPoint(mousePosition);
 			Vector3 skeletonSpacePoint = skeletonAnimation.transform.InverseTransformPoint(worldMousePosition);
